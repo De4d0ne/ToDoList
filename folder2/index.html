@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UFT-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header" >
+        <h2>To Do list</h2>
+        <form action="../folder1/index.php?api-name=ToDoList" method="post">
+            <input type="text" id="taskInput" placeholder="Add task..." name="taskInput">
+            <button type="submit" onclick="newElement()" class="addButton">Add</button>
+        </form>
+    </div>
+
+    <ul id="taskList">
+    </ul>
+    <script>
+        const forms = document.querySelectorAll("form");
+      
+        for (let i = 0; i < forms.length; i++) {
+          forms[i].onsubmit = function (event) {
+            event.preventDefault();
+            const data = new FormData(this);
+      
+            if (this.method == "post") {
+              fetch(this.action, {
+                method: "post",
+                body: data,
+              }).then((response) => console.log(response));
+            } else {
+              //...
+            }
+          };
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
